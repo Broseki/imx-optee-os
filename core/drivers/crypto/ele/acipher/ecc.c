@@ -350,8 +350,8 @@ static TEE_Result do_allocate_keypair(struct ecc_keypair *key,
 	return TEE_SUCCESS;
 
 out:
-	crypto_bignum_free(key->d);
-	crypto_bignum_free(key->x);
+	crypto_bignum_free(&key->d);
+	crypto_bignum_free(&key->x);
 
 	return TEE_ERROR_OUT_OF_MEMORY;
 }
@@ -381,7 +381,7 @@ static TEE_Result do_allocate_publickey(struct ecc_public_key *key,
 	return TEE_SUCCESS;
 
 out:
-	crypto_bignum_free(key->x);
+	crypto_bignum_free(&key->x);
 
 	return TEE_ERROR_OUT_OF_MEMORY;
 }
@@ -391,8 +391,8 @@ static void do_free_publickey(struct ecc_public_key *s)
 	if (!s)
 		return;
 
-	crypto_bignum_free(s->x);
-	crypto_bignum_free(s->y);
+	crypto_bignum_free(&s->x);
+	crypto_bignum_free(&s->y);
 }
 
 static struct drvcrypt_ecc driver_ecc = {
