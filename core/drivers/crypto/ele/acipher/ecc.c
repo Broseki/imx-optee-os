@@ -321,6 +321,7 @@ out:
 }
 
 static TEE_Result do_allocate_keypair(struct ecc_keypair *key,
+				      uint32_t type __unused,
 				      size_t size_bits)
 {
 	if (!key) {
@@ -356,6 +357,7 @@ out:
 }
 
 static TEE_Result do_allocate_publickey(struct ecc_public_key *key,
+					uint32_t type __unused,
 					size_t size_bits)
 {
 	if (!key) {
