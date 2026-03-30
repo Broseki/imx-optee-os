@@ -146,8 +146,8 @@ static TEE_Result do_gen_keypair(struct ecc_keypair *key,
 	}
 
 	res = imx_ele_generate_key(key_mgmt_handle, public_key_size,
-				   ELE_KEY_GROUP_VOLATILE, false, false,
-				   ELE_KEY_LIFETIME_VOLATILE,
+				   ELE_KEY_GROUP_PERSISTENT, true, false,
+				   ELE_KEY_LIFETIME_PERSISTENT,
 				   ELE_KEY_USAGE_SIGN_HASH |
 				   ELE_KEY_USAGE_VERIFY_HASH |
 				   ELE_KEY_USAGE_SIGN_MSG |

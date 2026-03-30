@@ -120,8 +120,14 @@ TEE_Result imx_ele_get_global_key_store_handle(uint32_t *key_store_handle)
 
 	res = imx_ele_key_store_open(imx_ele_session_handle,
 				     IMX_ELE_GLOBAL_KEY_STORE_ID,
-				     IMX_ELE_KEY_STORE_AUTH_NONCE, true, false,
+				     IMX_ELE_KEY_STORE_AUTH_NONCE, false, false,
 				     false, &imx_ele_key_store_handle);
+	if (res == TEE_ERROR_ITEM_NOT_FOUND)
+		res = imx_ele_key_store_open(imx_ele_session_handle,
+					     IMX_ELE_GLOBAL_KEY_STORE_ID,
+					     IMX_ELE_KEY_STORE_AUTH_NONCE, true,
+					     false, false,
+					     &imx_ele_key_store_handle);
 	if (res != TEE_SUCCESS) {
 		EMSG("Failed to open key store handle");
 		return res;
